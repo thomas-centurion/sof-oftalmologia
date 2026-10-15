@@ -17,6 +17,8 @@ interface DotPlateProps {
    * lámina entra en pantalla (y localmente bajo la lente).
    */
   reveal?: boolean
+  /** Se dibuja apenas monta (lámina del primer viewport); el resto espera a estar cerca. */
+  eager?: boolean
   /** Radio máximo de punto (en unidades del disco). Más chico, figura más nítida. */
   grain?: number
   /** Corrimiento horizontal de la figura, para alejarla de un borde recortado. */
@@ -167,6 +169,7 @@ export function DotPlate({
   lens = false,
   develop = false,
   reveal = false,
+  eager = false,
   grain = 0.034,
   figureOffset = 0,
   figureWidth = 0.86,
@@ -321,12 +324,13 @@ export function DotPlate({
       { threshold: 0.45 },
     )
 
-    document.fonts
-      .load(`800 100px ${FIGURE_FONT}`)
-      .catch(() => undefined)
-      .then(() => {
-        if (cancelled) return
-        build()
+    const init = () =>
+      document.fonts
+        .load(`800 100px ${FIGURE_FONT}`)
+        .catch(() => undefined)
+        .then(() => {
+          if (cancelled) return
+          build()
         resize()
         ro.observe(canvas)
         if (camouflage) io.observe(canvas)
@@ -341,18 +345,33 @@ export function DotPlate({
         }
       })
 
+    // Empaquetar miles de puntos cuesta: las láminas fuera de pantalla esperan
+    // a estar cerca de verse, así la carga inicial no bloquea el hilo principal.
+    const near = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          near.disconnect()
+          init()
+        }
+      },
+      { rootMargin: '400px 0px' },
+    )
+    if (eager) init()
+    else near.observe(canvas)
+
     return () => {
       cancelled = true
       cancelAnimationFrame(raf)
       ro.disconnect()
       io.disconnect()
+      near.disconnect()
       canvas.removeEventListener('pointermove', onMove)
       canvas.removeEventListener('pointerdown', onMove)
       canvas.removeEventListener('pointerleave', onLeave)
       canvas.removeEventListener('pointerup', onLeave)
       canvas.removeEventListener('pointercancel', onLeave)
     }
-  }, [figure, figureColors, groundColors, seed, density, lens, develop, reveal, grain, figureOffset, figureWidth])
+  }, [figure, figureColors, groundColors, seed, density, lens, develop, reveal, eager, grain, figureOffset, figureWidth])
 
   return <canvas ref={canvasRef} className={className} role="img" aria-label={label} />
 }

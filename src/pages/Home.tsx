@@ -56,6 +56,7 @@ export function Home() {
               lens
               develop
               reveal
+              eager
               label="Lámina de puntos de colores, como las del test de Ishihara, con las letras SOF escondidas."
             />
             <figcaption>

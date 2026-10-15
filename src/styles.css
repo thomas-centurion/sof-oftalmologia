@@ -56,6 +56,7 @@ body {
   line-height: 1.6;
   caret-color: var(--persimmon-deep);
   overflow-x: clip;
+  overflow-wrap: break-word;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -68,6 +69,8 @@ body {
 h1,
 h2,
 h3 {
+  overflow-wrap: break-word;
+  hyphens: auto;
   font-family: var(--display);
   font-optical-sizing: auto;
   line-height: 1.05;
@@ -381,13 +384,13 @@ button {
   background: transparent;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 73.75em) {
   .status {
     display: none;
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60em) {
   .menu-toggle {
     display: inline-flex;
   }
@@ -431,7 +434,7 @@ button {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 26.25em) {
   .site-header__cta {
     padding: 0 0.95rem;
   }
@@ -461,7 +464,7 @@ button {
  * En escritorio el hero ocupa toda la primera pantalla: la franja oscura de
  * Áreas (que sube 3rem) empieza justo en el borde inferior de la ventana.
  */
-@media (min-width: 961px) and (min-height: 640px) {
+@media (min-width: 60.0625em) and (min-height: 40em) {
   .hero {
     display: grid;
     align-content: center;
@@ -481,7 +484,7 @@ button {
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 5vw, 4.75rem);
+  font-size: min(clamp(2.6rem, 5vw, 4.75rem), 11.5vw);
   font-weight: 780;
   letter-spacing: -0.04em;
   line-height: 0.94;
@@ -563,7 +566,7 @@ button {
   color: var(--ink);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60em) {
   .hero__grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -639,6 +642,7 @@ button {
 
 .stations {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -845,7 +849,7 @@ button {
 
 .franjas {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.5rem;
   margin-top: 0.75rem;
 }
@@ -881,7 +885,7 @@ button {
 
 .station--fields {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
 }
 
@@ -1010,10 +1014,10 @@ button {
   max-width: 52ch;
 }
 
-@media (max-width: 560px) {
+@media (max-width: 35em) {
   .reasons,
   .station--fields {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .turno__foot {
@@ -1042,7 +1046,7 @@ button {
 
 .section-head h1,
 .section-head h2 {
-  font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+  font-size: min(clamp(2.1rem, 4.2vw, 3.6rem), 10vw);
   font-weight: 760;
   letter-spacing: -0.035em;
 }
@@ -1064,9 +1068,9 @@ button {
   gap: 1.5rem 3rem;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60em) {
   .section-head--split {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1080,7 +1084,7 @@ button {
   margin-top: -3rem;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60em) {
   .areas {
     margin-top: 3.5rem;
     padding-top: 4rem;
@@ -1120,7 +1124,7 @@ button {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+  font-size: min(clamp(1.625rem, 2.6vw, 2.25rem), 8.5vw);
   font-weight: 740;
   letter-spacing: -0.03em;
 }
@@ -1182,7 +1186,7 @@ button {
   color: var(--ink);
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 67.5em) {
   .legend__row {
     grid-template-columns: 112px minmax(0, 1fr) auto;
   }
@@ -1205,7 +1209,7 @@ button {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5em) {
   .legend__row {
     grid-template-columns: 96px minmax(0, 1fr);
     align-items: start;
@@ -1284,7 +1288,7 @@ button {
 
 .index {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 clamp(2rem, 5vw, 5rem);
   margin-bottom: 2.5rem;
 }
@@ -1349,9 +1353,9 @@ button {
   color: var(--ink-2);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5em) {
   .index {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;
   }
 
@@ -1513,9 +1517,9 @@ button {
   color: var(--ink);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .sedes__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sede--main {
@@ -1540,7 +1544,7 @@ button {
 }
 
 .cierre h2 {
-  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  font-size: min(clamp(2.3rem, 5vw, 4.4rem), 11vw);
   font-weight: 780;
   letter-spacing: -0.04em;
   line-height: 0.98;
@@ -1595,7 +1599,7 @@ button {
   color: #cfdcd5;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5em) {
   .cierre__plate,
   .cierre--cross .cierre__plate {
     position: relative;
@@ -1618,7 +1622,7 @@ button {
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)) minmax(0, 1.2fr);
   gap: 2.5rem;
   padding-bottom: 3rem;
 }
@@ -1661,15 +1665,15 @@ button {
   color: var(--on-dark-2);
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60em) {
   .site-footer__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 32.5em) {
   .site-footer__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1689,7 +1693,7 @@ button {
 }
 
 .page-head h1 {
-  font-size: clamp(2.6rem, 5vw, 4.75rem);
+  font-size: min(clamp(2.6rem, 5vw, 4.75rem), 11.5vw);
   font-weight: 780;
   letter-spacing: -0.04em;
   line-height: 0.94;
@@ -1731,7 +1735,7 @@ button {
   color: var(--ink);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .page-head__grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1810,7 +1814,7 @@ button {
 }
 
 .roster__name {
-  font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+  font-size: min(clamp(1.625rem, 2.6vw, 2.25rem), 8.5vw);
   font-weight: 740;
   letter-spacing: -0.03em;
 }
@@ -1846,7 +1850,7 @@ button {
   transform: translateY(1px);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5em) {
   .roster__row {
     grid-template-columns: 96px minmax(0, 1fr);
     align-items: start;
@@ -1879,11 +1883,11 @@ button {
 
 .credenciales__lists {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 2rem;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .credenciales__grid,
   .credenciales__lists {
     grid-template-columns: minmax(0, 1fr);
@@ -1905,7 +1909,7 @@ button {
 }
 
 .historia h2 {
-  font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+  font-size: min(clamp(2.1rem, 4.2vw, 3.6rem), 10vw);
   font-weight: 760;
   letter-spacing: -0.035em;
   max-width: 12ch;
@@ -1928,7 +1932,7 @@ button {
   color: var(--ink);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .historia__grid {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1977,7 +1981,7 @@ button {
   max-width: 52ch;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5em) {
   .pilar {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2018,13 +2022,13 @@ button {
   font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .practico__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 32.5em) {
   .practico__facts {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2053,7 +2057,7 @@ button {
 
 .contact-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.1rem 1rem;
   max-width: 720px;
 }
@@ -2098,7 +2102,7 @@ button {
 
 .contact-form--sent {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   justify-items: start;
   padding: 1.75rem 0;
@@ -2106,7 +2110,7 @@ button {
 }
 
 .contact-form--sent h3 {
-  font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+  font-size: min(clamp(1.625rem, 2.6vw, 2.25rem), 8.5vw);
   font-weight: 740;
   letter-spacing: -0.03em;
 }
@@ -2134,13 +2138,13 @@ button {
   margin-top: 2.25rem;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60em) {
   .escribinos__grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 35em) {
   .contact-form {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2174,13 +2178,13 @@ button {
 }
 
 .sede-map h3 {
-  font-size: clamp(1.625rem, 2.6vw, 2.25rem);
+  font-size: min(clamp(1.625rem, 2.6vw, 2.25rem), 8.5vw);
   font-weight: 740;
   letter-spacing: -0.03em;
 }
 
 .sede-map--main h3 {
-  font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+  font-size: min(clamp(2.1rem, 4.2vw, 3.6rem), 10vw);
   letter-spacing: -0.035em;
 }
 
@@ -2242,7 +2246,7 @@ button {
   filter: none;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .sede-map {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2255,7 +2259,7 @@ button {
 
 /* Ajustes de la revisión final */
 
-@media (min-width: 761px) {
+@media (min-width: 47.5625em) {
   .cierre:not(.cierre--cross) .cierre__grid > div {
     max-width: calc(100% - min(380px, 30vw) - 2rem);
   }
@@ -2293,7 +2297,7 @@ button {
   font-size: 1.125rem;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .trio {
     margin-top: 2rem;
     max-width: 460px;
@@ -2329,13 +2333,13 @@ button {
   grid-column: 1;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 60em) {
   .practicas--page .section-head--split {
     grid-template-columns: minmax(0, 1fr) auto;
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 35em) {
   .area-plate .plate {
     width: 96px;
   }
@@ -2366,7 +2370,7 @@ button {
   grid-row: 1 / span 2;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .sede-map:not(.sede-map--main) .sede-map__info {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2393,7 +2397,7 @@ button {
 }
 
 /* Servicios en celular: título y lámina en una fila, texto y filtros a todo el ancho. */
-@media (max-width: 760px) {
+@media (max-width: 47.5em) {
   .practicas--page .section-head--split {
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: 1rem;
@@ -2435,6 +2439,58 @@ button {
   }
 }
 
+
+/* Texto agrandado por el usuario: la cabecera y los botones no ensanchan la página. */
+@media (max-width: 23em) {
+  .site-header__cta {
+    display: none;
+  }
+}
+
+@media (max-width: 30em) {
+  .btn {
+    white-space: normal;
+    text-align: center;
+    height: auto;
+    padding-block: 0.6rem;
+  }
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+}
+
+.legend__link {
+  white-space: normal;
+}
+
+/* Emails, direcciones y datos largos parten antes que ensanchar la página con texto agrandado. */
+main a,
+.site-footer a,
+dd,
+.sede__addr,
+.sede__phone,
+.reason__hint,
+.row__detail {
+  overflow-wrap: anywhere;
+}
+
+.site-nav a,
+.btn {
+  overflow-wrap: normal;
+}
+
+.site-nav a {
+  white-space: nowrap;
+}
+
+/* El título recibe el foco al cambiar de página; no necesita anillo visible. */
+main h1:focus {
+  outline: none;
+}
+
 /* Página provisoria */
 
 .soon {
@@ -2449,7 +2505,7 @@ button {
 }
 
 .soon h1 {
-  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-size: min(clamp(2.6rem, 6vw, 5rem), 11.5vw);
   font-weight: 780;
   letter-spacing: -0.04em;
 }
@@ -2466,9 +2522,9 @@ button {
   justify-self: end;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 47.5em) {
   .soon__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .plate--soon {
@@ -2478,11 +2534,24 @@ button {
   }
 }
 
+/*
+ * Movimiento reducido: sin desplazamientos ni escalados; los cambios de color
+ * (hover, selección) se mantienen porque comunican estado sin mover nada.
+ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 1ms !important;
-    transition-duration: 1ms !important;
+  .preview__chip,
+  .row {
+    animation: none;
+  }
+
+  .btn:active:not(:disabled) {
+    transform: none;
+  }
+
+  .text-link:hover svg,
+  .area__link:hover svg,
+  .legend__link:hover svg {
+    transform: none;
   }
 }
+

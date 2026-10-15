@@ -12,6 +12,7 @@ import { Nosotros } from './pages/Nosotros'
 import { Soon } from './pages/Soon'
 import { Staff } from './pages/Staff'
 
+// Un solo paquete: el sitio es chico y dividirlo agregaba una descarga extra en cada visita directa.
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>

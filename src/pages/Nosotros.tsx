@@ -52,6 +52,7 @@ export function Nosotros() {
               develop
               reveal
               lens
+              eager
               label="Lámina de puntos con la letra P escondida"
             />
             <figcaption>

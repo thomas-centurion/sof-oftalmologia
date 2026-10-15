@@ -44,6 +44,7 @@ export function Staff() {
               develop
               reveal
               lens
+              eager
               label={`Lámina de puntos con el número ${staff.length} escondido`}
             />
             <figcaption>

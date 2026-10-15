@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Menu, Phone, X } from 'lucide-react'
 import { contact, hours } from '../data/clinic'
+import { applyPageMeta } from '../lib/meta'
 import { openStatus } from '../lib/schedule'
 
 const nav = [
@@ -48,9 +49,17 @@ export function Layout() {
   const status = useOpenStatus()
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const prevPath = useRef<string | null>(null)
+
+  useEffect(() => {
+    applyPageMeta(location.pathname)
+  }, [location.pathname])
 
   useEffect(() => {
     setOpen(false)
+    // Solo es cambio de página si veníamos de otra ruta (StrictMode repite el efecto al montar).
+    const changedPage = prevPath.current !== null && prevPath.current !== location.pathname
+    prevPath.current = location.pathname
     if (location.hash) {
       const target = document.getElementById(location.hash.slice(1))
       if (target) {
@@ -59,6 +68,21 @@ export function Layout() {
       }
     }
     window.scrollTo(0, 0)
+    // Al cambiar de página, el foco va al título nuevo: los lectores de pantalla anuncian la página.
+    if (changedPage) {
+      // Se reintenta unos cuadros por si el título todavía no se montó.
+      let tries = 0
+      const focusTitle = () => {
+        const h1 = document.querySelector<HTMLElement>('main h1')
+        if (h1) {
+          h1.setAttribute('tabindex', '-1')
+          h1.focus({ preventScroll: true })
+        } else if (tries++ < 30) {
+          requestAnimationFrame(focusTitle)
+        }
+      }
+      focusTitle()
+    }
   }, [location.pathname, location.hash, location.key])
 
   return (
