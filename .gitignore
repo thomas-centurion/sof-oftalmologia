@@ -1,9 +1,0 @@
-node_modules
-dist
-*.local
-.impeccable
-.agents
-.claude
-.codex
-DESIGN.md
-PRODUCT.md
