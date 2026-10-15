@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sof-pergamino",
+  "compatibility_date": "2026-10-01",
+  // Sitio estático: Workers sirve el build de Vite. Las rutas del cliente
+  // (/servicios, /staff, …) caen en index.html para que React Router las resuelva.
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}
